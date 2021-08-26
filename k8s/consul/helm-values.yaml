@@ -1,0 +1,14 @@
+global:
+  name: consul
+  datacenter: dc1
+client:
+  enabled: true
+ui:
+  enabled: true
+  service:
+    type: "NodePort"
+server:
+  replicas: 1
+  bootstrapExpect: 1
+  disruptionBudget:
+    maxUnavailable: 0
