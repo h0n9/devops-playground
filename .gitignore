@@ -3,3 +3,6 @@ tags
 
 # Vim
 *.swp
+
+# Vault
+cluster-keys.json
