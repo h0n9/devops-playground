@@ -22,5 +22,5 @@ helm repo update
 #### Install Helm chart
 ```bash
 helm install consul hashicorp/consul --version 0.33.0 --values helm-values.yaml
-`helm-values.yaml` is prepared for use on Minikube not for production env.
 ```
+`helm-values.yaml` is prepared for use on Minikube not for production env.
