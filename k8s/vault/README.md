@@ -105,3 +105,41 @@ vault write auth/kubernetes/role/webapp \
 ```bash
 kubectl apply -f deployment-01-webapp.yaml
 ```
+
+### Setup PKI Secrets Engine
+
+#### Enable engine
+```bash
+vault secrets enable pki
+vault secrets tune -max-lease-ttl=8760h pki
+```
+
+#### Generate Root CA
+```bash
+vault write pki/root/generate/internal \
+    common_name=example.com \
+    ttl=8760h
+```
+
+#### Update CRL location and issuing certificates
+```bash
+vault write pki/config/urls \
+    issuing_certificates="http://127.0.0.1:8200/v1/pki/ca" \
+    crl_distribution_points="http://127.0.0.1:8200/v1/pki/crl"
+```
+
+#### Configure a role
+```bash
+vault write pki/roles/example-com \
+    allowed_domains=example.com \
+    allow_subdomains=true \
+    max_ttl=72h
+```
+
+### Issue credentials
+
+#### Generate a new credential
+```bash
+vault write pki/issue/example-com \
+    common_name=www.example.com
+```
