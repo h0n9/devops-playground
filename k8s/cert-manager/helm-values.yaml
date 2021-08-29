@@ -1,0 +1,3 @@
+installCRDS: true
+prometheus:
+  enabled: true
