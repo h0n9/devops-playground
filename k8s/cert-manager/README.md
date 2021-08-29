@@ -26,7 +26,7 @@ helm install \
   --namespace cert-manager \
   --create-namespace \
   --version v1.5.3 \
-  --config helm-values.yaml
+  --values helm-values.yaml
 ```
 `helm-values.yaml` is prepared for use on Minikube not for production env.
 
