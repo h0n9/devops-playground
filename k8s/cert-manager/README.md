@@ -36,7 +36,7 @@ helm install \
 
 #### Create Issuer for staging, prd
 ```
-kubectl apply -f issuer-*.yaml
+kubectl apply -f issuer-staging.yaml -f issuer-prd.yaml
 ```
 
 
