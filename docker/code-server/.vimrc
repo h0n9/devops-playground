@@ -8,7 +8,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'wesleyche/SrcExpl'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
 Plugin 'johngrib/vim-game-code-break'
 Plugin 'stephpy/vim-yaml'
 
