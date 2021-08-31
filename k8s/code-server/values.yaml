@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: codercom/code-server
+  repository: h0n9/code-server 
   tag: '3.11.1'
   pullPolicy: Always
 
