@@ -6,7 +6,7 @@ client:
 ui:
   enabled: true
   service:
-    type: "NodePort"
+    type: "ClusterIP"
 server:
   replicas: 1
   bootstrapExpect: 1
