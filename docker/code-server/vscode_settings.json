@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "One Dark Pro Monokai Darker",
+    "workbench.startupEditor": "gettingStarted",
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "editor.codeLensFontFamily": "D2Coding, Menlo",
+    "editor.fontFamily": "D2Coding, Menlo, Monaco, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "D2Coding, Menlo",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.minimap.enabled": false
+}

@@ -13,3 +13,8 @@ This repository aims to serve as a playground for playing with DevOps things.
 
 ### Apps
 - [code-server](k8s/code-server/README.md)
+
+## Docker
+
+### Personalization
+- [code-server](docker/code-server/README.md)

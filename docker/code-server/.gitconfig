@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	email = monsieur.ahn@gmail.com
+	name = Jaehong Ahn
+[core]
+	precomposeunicode = true
+	quotepath = false
+	editor = vim
+[pull]
+	rebase = true
