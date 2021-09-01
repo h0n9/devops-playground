@@ -27,25 +27,25 @@ USER 1000
 WORKDIR /home/coder
 
 # setup tmux config
-COPY .tmux.conf .
+COPY --chown=1000:1000 .tmux.conf .
 
 # install oh-my-zsh and plugins
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 RUN git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-COPY .zshrc .
+COPY --chown=1000:1000 .zshrc .
 
 # install vundle and plugins
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-COPY .vimrc .
+COPY --chown=1000:1000 .vimrc .
 RUN vim +PluginInstall +qall
 
 # setup git config
-COPY .gitconfig .
+COPY --chown=1000:1000 .gitconfig .
 
 # install vscode extensions and setup preferences
-COPY vscode_extensions .
-COPY vscode_settings.json .local/share/code-server/User/settings.json
-RUN cat vscode_extensions | xargs -n 1 sudo code-server --install-extension
+COPY --chown=1000:1000 vscode_extensions .
+COPY --chown=1000:1000 vscode_settings.json .local/share/code-server/User/settings.json
+RUN cat vscode_extensions | xargs -n 1 code-server --install-extension
 
