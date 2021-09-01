@@ -1,0 +1,3 @@
+[submodule "k8s/istio/book-source-code"]
+	path = k8s/istio/book-source-code
+	url = https://github.com/istioinaction/book-source-code.git
