@@ -34,9 +34,8 @@ helm install \
 
 ### Setup Issuer
 
-#### Create Issuer for staging, prd
+#### Create Issuer for letsencrypt staging, prd
 ```
-kubectl apply -f issuer-staging.yaml -f issuer-prd.yaml
+kubectl apply -f issuer/letsencrypt
 ```
-
 
