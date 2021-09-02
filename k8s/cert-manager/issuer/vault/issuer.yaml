@@ -7,11 +7,10 @@ spec:
   vault:
     path: pki/sign/example-dot-com
     server: http://vault.default.svc.cluster.local:8200
-    caBundle: "<base64 encoded caBundle>"
     auth:
       kubernetes:
-        role: cert-manager
+        role: issuer
         mountPath: /v1/auth/kubernetes
         secretRef:
-          name: "<service-account-token-name>"
+          name: $ISSUER_SECRET_REF
           key: token
