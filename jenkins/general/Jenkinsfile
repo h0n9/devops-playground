@@ -1,0 +1,114 @@
+pipeline {
+    agent any
+    environment {
+        BRANCH_RELEASE = "master"
+        BRANCH_DEVELOP = "develop"
+        BRANCH_STAGING = "staging"
+        DOCKER_REGISTRY_PUBLIC = "https://<docker_registry_public_url>"
+        DOCKER_REGISTRY_PRIVATE = "https://<docker_registry_private_url>"
+        DOCKER_CRED = "<jenkins_docker_cred>"
+        DOCKER_REPO = "<docker_repo_name>"
+        DOCKER_TMP_TAG = "tmp"
+        DOCKER_DEV_TAG = "dev"
+        DOCKER_BUILDKIT = 1
+        SSH_CRED = "<jenkins_ssh_cred>"
+    }
+    stages {
+        stage("BUILD") {
+            when {
+                anyOf {
+                    branch "${env.BRANCH_RELEASE}"
+                    branch "${env.BRANCH_DEVELOP}"
+                    branch "${env.BRANCH_STAGING}"
+                    tag '*'
+                }
+            }
+            steps {
+                echo "====++++executing BUILD++++===="
+                script {
+                    sshagent(credentials: ["${env.SSH_CRED}"]) {
+                        docker.build("${env.DOCKER_REPO}:${env.DOCKER_TMP_TAG}", "--ssh default .")
+                    }
+                }
+            }
+            post {
+                success {
+                    echo "========BUILD executed successfully========"
+                }
+                failure {
+                    echo "========BUILD execution failed========"
+                }
+            }
+        }
+        stage("PUSH") {
+            when {
+                anyOf {
+                    branch "${env.BRANCH_STAGING}"
+                    tag '*'
+                }
+            }
+            steps {
+                echo "====++++executing PUSH++++===="
+                script {
+                    docker.withRegistry("${env.DOCKER_REGISTRY_PUBLIC}", "${env.DOCKER_CRED}") {
+                        def img_tag = env.BRANCH_NAME
+                        if (img_tag == env.BRANCH_STAGING) {
+                            img_tag = env.DOCKER_DEV_TAG
+                        }
+                        def docker_img = docker.image("${env.DOCKER_REPO}:${env.DOCKER_TMP_TAG}")
+                        docker_img.push(img_tag)
+                        if ((img_tag).startsWith("v")) {
+                            docker_img.push("latest")
+                        }
+                    }
+                    docker.withRegistry("${env.DOCKER_REGISTRY_PRIVATE}", "${env.DOCKER_CRED}") {
+                        def img_tag = env.BRANCH_NAME
+                        if (img_tag == env.BRANCH_STAGING) {
+                            img_tag = env.DOCKER_DEV_TAG
+                        }
+                        def docker_img = docker.image("${env.DOCKER_REPO}:${env.DOCKER_TMP_TAG}")
+                        docker_img.push(img_tag)
+                        if ((img_tag).startsWith("v")) {
+                            docker_img.push("latest")
+                        }
+                    }
+                }
+            }
+            post {
+                success {
+                    echo "====++++PUSH executed successfully++++===="
+                }
+                failure {
+                    echo "====++++PUSH execution failed++++===="
+                }
+            }
+        }
+        stage("DEPLOY") {
+            when {
+                anyOf {
+                    branch "${env.BRANCH_STAGING}"
+                }
+            }
+            steps {
+                echo "====++++executing DEPLOY++++===="
+                // execute something here
+            }
+            post {
+                success {
+                    echo "====++++DEPLOY executed successfully++++===="
+                }
+                failure {
+                    echo "====++++DEPLOY execution failed++++===="
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo "========pipeline executed successfully ========"
+        }
+        failure {
+            echo "========pipeline execution failed========"
+        }
+    }
+}
