@@ -18,3 +18,6 @@ This repository aims to serve as a playground for playing with DevOps things.
 
 ### Personalization
 - [code-server](docker/code-server/README.md)
+
+## Jenkins
+- [README](jenkins/README.md)
