@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   profile: demo 
-  tag: 1.10.0
+  tag: 1.11.0
   meshConfig:
     enableTracing: true
   components:
