@@ -44,3 +44,6 @@ tags
 
 # Vault
 cluster-keys.json
+
+# credentials
+*.pem
