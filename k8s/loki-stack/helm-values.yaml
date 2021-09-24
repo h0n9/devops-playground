@@ -1,0 +1,16 @@
+---
+grafana:
+  enabled: true
+prometheus:
+  enabled: true
+  alertmanager:
+    persistentVolume:
+      enabled: true
+  server:
+    persistentVolume:
+      enabled: true
+loki:
+  persistence:
+    enabled: true
+    storageClassName: standard
+    size: 5Gi
