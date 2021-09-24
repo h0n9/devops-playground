@@ -21,7 +21,7 @@ helm repo update
 
 #### Install Helm chart
 ```bash
-helm upgrade --install loki grafana/loki-stack --values helm-values.yaml
+helm upgrade --install loki grafana/loki-stack --version 2.4.1 --values helm-values.yaml
 ```
 `helm-values.yaml` is set to deploy the following applications with persistent volume claim:
 - Loki
