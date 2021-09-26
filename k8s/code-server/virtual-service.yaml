@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: code-server 
+spec:
+  gateways:
+  - code-server
+  hosts:
+  - code.h0n9.postie.chat
+  http:
+  - route:
+    - destination:
+        host: code-server.external 
+        port:
+          number: 8080
+      weight: 100
+        

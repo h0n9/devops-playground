@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: external-code-server
+  namespace: istio-system
+spec:
+  hosts:
+  - code-server.external
+  endpoints:
+  - address: 192.168.0.2
+  location: MESH_EXTERNAL
+  resolution: STATIC 
+  ports:
+  - number: 8080 
+    name: http
+    protocol: HTTP 
