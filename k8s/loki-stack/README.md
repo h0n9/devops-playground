@@ -31,6 +31,11 @@ helm upgrade --install loki grafana/loki-stack --version 2.4.1 --values helm-val
 
 ## Usage
 
+### Get admin password for Grafana
+```bash
+kubectl get secret loki-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
 ### Deploy apps
 ```bash
 kubectl apply -R -f poc/
