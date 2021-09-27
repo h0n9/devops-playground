@@ -28,3 +28,10 @@ helm upgrade --install loki grafana/loki-stack --version 2.4.1 --values helm-val
 - Promtail
 - Grafana
 - Prometheus
+
+## Usage
+
+### Deploy apps
+```bash
+kubectl apply -R -f poc/
+```
