@@ -7,6 +7,8 @@ spec:
   tag: 1.11.0
   meshConfig:
     enableTracing: true
+    outboundTrafficPolicy:
+      mode: REGISTRY_ONLY
   components:
     base:
       enabled: true
