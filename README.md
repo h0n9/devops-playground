@@ -11,6 +11,7 @@ This repository aims to serve as a playground for playing with DevOps things.
 - [storage-class](k8s/storage-class)
 
 ## Docker
+- [go](docker/go/README.md)
 - [openjdk](docker/openjdk/README.md)
 - [code-server](docker/code-server/README.md)
 
