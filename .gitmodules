@@ -1,3 +1,6 @@
 [submodule "k8s/istio/book-source-code"]
 	path = k8s/istio/book-source-code
 	url = https://github.com/istioinaction/book-source-code.git
+[submodule "tools/cert-inspector"]
+	path = tools/cert-inspector
+	url = https://github.com/h0n9/cert-inspector.git
