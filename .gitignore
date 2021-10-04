@@ -47,3 +47,4 @@ cluster-keys.json
 
 # credentials
 *.pem
+secret.yaml
