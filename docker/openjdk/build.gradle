@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0-M2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.h0n9.devops-playground'
+version = '0.0.1'
+sourceCompatibility = '8'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+}
+
+def unpackDir = "$buildDir/unpacked"
+
+task moveLib {
+	doLast {
+		ant.move(file: "${unpackDir}/app/BOOT-INF/lib", toFile: "${unpackDir}/lib")
+	}
+}
+
+task unpackJar(type: Copy) {
+	delete unpackDir // clean up first
+	from zipTree(jar.getArchiveFile())
+	into "$unpackDir/app"
+
+	finalizedBy moveLib
+}
+
+build {
+	finalizedBy unpackJar
+}
