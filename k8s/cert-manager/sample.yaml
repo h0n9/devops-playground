@@ -2,33 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kuard
+  name: my-hostname
 spec:
   selector:
     matchLabels:
-      app: kuard
+      app: my-hostname
   replicas: 1
   template:
     metadata:
       labels:
-        app: kuard
+        app: my-hostname
     spec:
       containers:
-      - image: gcr.io/kuar-demo/kuard-amd64:1
-        imagePullPolicy: Always
-        name: kuard
+      - image: h0n9/go-my-hostname:0.0.2
+        imagePullPolicy: IfNotPresent
+        name: my-hostname
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: kuard
+  name: my-hostname
 spec:
   ports:
   - port: 80
     targetPort: 8080
-    protocol: TCP
+    protocol: TCP 
   selector:
-    app: kuard
-
+    app: my-hostname
