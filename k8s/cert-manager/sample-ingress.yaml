@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-hostname
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  tls:
+  - hosts:
+    - playground.h0n9.postie.chat 
+    secretName: playground-h0n9-cert-prd
+  rules:
+  - host: playground.h0n9.postie.chat 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-hostname
+            port:
+              number: 80

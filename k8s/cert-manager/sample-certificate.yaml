@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: playground
+  namespace: istio-system
+spec:
+  secretName: playground-h0n9-cert-prd
+  issuerRef:
+    name: letsencrypt-prd
+  dnsNames:
+  - playground.h0n9.postie.chat
