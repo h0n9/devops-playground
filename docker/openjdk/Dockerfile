@@ -8,6 +8,7 @@ COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
 COPY settings.gradle .
+RUN ./gradlew build || return 0
 COPY src src
 RUN ./gradlew build
 
