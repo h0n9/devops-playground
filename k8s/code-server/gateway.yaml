@@ -15,7 +15,7 @@ spec:
     tls:
       httpsRedirect: true 
   - hosts:
-    - code.h0n9.postie.chat
+    - "*"
     port:
       name: https
       number: 443
