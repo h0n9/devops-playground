@@ -1,0 +1,26 @@
+---
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+servers: 1
+agents: 3
+kubeAPI:
+  hostPort: "6443"
+ports:
+  - port: 7780:80
+    nodeFilters:
+      - loadbalancer
+  - port: 7443:443
+    nodeFilters:
+      - loadbalancer
+options:
+  k3s:
+    extraArgs:
+      - arg: --no-deploy=traefik
+        nodeFilters:
+          - server:*
+      - arg: --flannel-backend=none
+        nodeFilters:
+          - server:*
+volumes:
+  - volume: ${PWD}/calico.yaml:/var/lib/rancher/k3s/server/manifests/calico.yaml
+
