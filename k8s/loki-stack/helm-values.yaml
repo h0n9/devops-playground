@@ -12,5 +12,5 @@ prometheus:
 loki:
   persistence:
     enabled: true
-    storageClassName: standard
+    storageClassName: local-path
     size: 5Gi
