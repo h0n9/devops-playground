@@ -1,0 +1,38 @@
+version: '3'
+volumes:
+  mysql_data:
+services:
+  mysql:
+    image: mysql:8.0.29-debian
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=guacamole_db
+      - MYSQL_USER=guacamole_user
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql:rw
+      - ./initdb.d:/docker-entrypoint-initdb.d
+  guacd:
+    image: guacamole/guacd:1.4.0 
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+  guacamole:
+    depends_on:
+      - mysql
+      - guacd
+    image: guacamole/guacamole:1.4.0
+    restart: always
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_HOSTNAME=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=guacamole_db
+      - MYSQL_USER=guacamole_user
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - GUACD_HOSTNAME=guacd
+      - GUACD_PORT=4822
+    ports:
+      - 8081:8080
