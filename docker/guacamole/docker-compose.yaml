@@ -13,12 +13,14 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql:rw
-      - ./initdb.d:/docker-entrypoint-initdb.d
+      - ./initdb.d:/docker-entrypoint-initdb.d:ro
   guacd:
     image: guacamole/guacd:1.4.0 
     restart: always
     environment:
       - TZ=Asia/Seoul
+    volumes:
+      - ./fonts:/home/guacd/.local/share/fonts:ro
   guacamole:
     depends_on:
       - mysql
