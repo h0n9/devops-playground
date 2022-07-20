@@ -5,6 +5,7 @@ services:
   mysql:
     image: mysql:8.0.29-debian
     restart: always
+    mem_limit: 512m
     environment:
       - TZ=Asia/Seoul
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
@@ -17,6 +18,7 @@ services:
   guacd:
     image: guacamole/guacd:1.4.0 
     restart: always
+    mem_limit: 256m
     environment:
       - TZ=Asia/Seoul
     volumes:
@@ -27,6 +29,7 @@ services:
       - guacd
     image: guacamole/guacamole:1.4.0
     restart: always
+    mem_limit: 512m
     environment:
       - TZ=Asia/Seoul
       - MYSQL_HOSTNAME=mysql
