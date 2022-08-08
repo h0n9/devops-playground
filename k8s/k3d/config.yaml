@@ -2,7 +2,7 @@
 apiVersion: k3d.io/v1alpha4
 kind: Simple
 servers: 1
-agents: 3
+agents: 5
 kubeAPI:
   hostPort: "6443"
 ports:
