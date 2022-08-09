@@ -21,6 +21,9 @@ options:
       - arg: --flannel-backend=none
         nodeFilters:
           - server:*
+      - arg: --node-taint=node-role.kubernetes.io/master=:NoSchedule
+        nodeFilters:
+          - server:*
 volumes:
   - volume: ${PWD}/calico.yaml:/var/lib/rancher/k3s/server/manifests/calico.yaml
 
