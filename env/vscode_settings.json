@@ -1,0 +1,23 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "terminal.integrated.fontFamily": "D2Coding",
+    "editor.fontFamily": "D2Coding",
+    "editor.rulers": [80,120],
+    "editor.fontSize": 16,
+    "go.formatTool": "goimports",
+    "git.autofetch": true,
+    "window.zoomLevel": 0,
+    "breadcrumbs.enabled": true,
+    "vim.useSystemClipboard": true,
+    "editor.renderControlCharacters": true,
+    "terminal.integrated.fontSize": 14,
+    "workbench.sideBar.location": "left",
+    "markdown.preview.fontFamily": "'Times New Roman',-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+    "markdown.preview.fontSize": 18,
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "on",
+    "keyboard.touchbar.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.macOptionClickForcesSelection": true
+}
